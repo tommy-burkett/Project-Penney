@@ -37,7 +37,7 @@ Files included:
 
 `data/` 
 
-- This folder holds all of the `.npy` files in an organized manner. The files are named `'decks_{seed}.npy'` and they include the seed used to generate the decks within them. 
+- This folder holds all of the `.npy` files stored from `datagen.py` in an organized manner. The files are named `'decks_{seed}.npy'` and they include the seed used to generate the decks within them. 
 
 ---
 
