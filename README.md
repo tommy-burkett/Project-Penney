@@ -40,3 +40,9 @@ Files included:
 - This folder holds all of the `.npy` files in an organized manner. The files are named `decks_{seed}.npy` and they include the seed used to generate the decks within it. 
 
 ---
+
+`final_testing.ipynb`
+
+- This file contains the important tests ran to ensure that the code executes as planned. Run this file and change the `n` and `seed` parameters to create new `.npy` files that store new decks. If you want to augment existing decks, keep `seed` the same and just update `n`.
+
+---
