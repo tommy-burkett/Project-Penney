@@ -25,11 +25,11 @@ Files included:
 
 `src/` 
 
-- datagen.py: Contains code related to the generation of decks and their storage.
+- datagen.py: Contains code related to the generation of decks and their storage. The first function `get_decks()` generates a certain number of decks specified by `n_decks` for each `seed`. Then, to store the decks we use `store_data()` which will store the decks we generated from `get_decks()` in a `.npy` file in the `data/` folder.
 
 - helpers.py: Contains code with functions and variables needed across various other modules. 
 
-- processing.py: Contains code related to scoring the games. 
+- processing.py: Contains code related to scoring the games. In order to score the games we must first load a file from the `data/` folder by using the `load_file()` function. 
 
 - visualization.py: Contains code related to creating visualizations for the scoring. 
 
