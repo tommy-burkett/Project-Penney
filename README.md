@@ -23,7 +23,7 @@ leading up to the consecutive combination.
 
 Files included:
 
-`src/` 
+`src/`
 
 - datagen.py: Contains code related to the generation of decks and their storage. The first function `get_decks()` generates a certain number of decks specified by `n_decks` for each `seed`. Then, to store the decks we use `store_data()` which will store the decks we generated from `get_decks()` in a `.npy` file in the `data/` folder.
 
@@ -33,5 +33,10 @@ Files included:
 
 - visualization.py: Contains code related to creating visualizations for the scoring. 
 
+---
+
+`data/` 
+
+- This folder holds all of the `.npy` files in an organized manner. The files are named `decks_{seed}.npy` and they include the seed used to generate the decks within it. 
 
 ---
