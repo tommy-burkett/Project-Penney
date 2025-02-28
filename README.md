@@ -1,7 +1,7 @@
 ## Project Penney
 
 The purpose of this code is to generate a specified number of decks to simulate Penney's Game, score each combination of the game to determine 
-the odds of winning for each combination and display these statistics visually. 
+the odds of winning for each combination and display these statistics visually on a heatmap. 
 
 Penney's game is a sequence game commonly played with coins. Player 1 selects any combination of heads and tails with length 3
 and then Player 2 does the same. So, for example, Player 1 picks HHT and Player 2 picks THT, and then they flip a coin until
@@ -29,20 +29,22 @@ Files included:
 
 - helpers.py: Contains code with functions and variables needed across various other modules. 
 
-- processing.py: Contains code related to scoring the games. In order to score the games we must first load a file from the `data/` folder by using the `load_file()` function. 
+- processing.py: Contains code related to scoring the games. In order to score the games we must first load a file from the `data/` folder by using the `load_file()` function. Then we convert the numbers in the decks to colors with the `numbers_to_colors()` function. After that, we check to make sure the player combinations exist in the deck with `combination_check()`. Once all of the pre-processing is done, we simulate `penney_game()` with a specified number of simulations `num_simulations` that can be changed by the user within this `processing.py` file. To change the number of simulations, simply open the `processing.py` file and at the top, where the constants are listed, change `NUM_SIMULATIONS` to your desired number. Now that we have the Penney's Game function, we can simulate the game for all 64 - 8 = 56 combinations in the `simulate_games_for_all_combinations()` funciton. Lastly, the `statistics()` function stores all of the data from `simulate_games_for_all_combinations()` by the `scoring_method` (either tricks or total cards) and saves it to a `.npy` file that is used in the next module. 
 
-- visualization.py: Contains code related to creating visualizations for the scoring. 
+- visualization.py: Contains code related to creating visualizations for the scoring. Before the visualizations can be created, we load the statistics using our `load_file()` function. Once we have the statistics loaded, we convert the `.npy` file to a `Pandas DataFrame` using the `npy_to_dataframe()` function so that the data will be easily accessible when generating our heatmaps. Finally, once this `DataFrame` is created, we load it into our `generate_heatmap_from_df()` function, which returns our final visualizations for tricks and total cards. 
 
 ---
 
 `data/` 
 
-- This folder holds all of the `.npy` files stored from `datagen.py` in an organized manner. The files are named `'decks_{seed}.npy'` and they include the seed used to generate the decks within them. 
+- This folder holds all of the `.npy` files stored from `datagen.py` in an organized manner. The files are named `'decks_{seed}.npy'` and they include the seed used to generate the decks within them. The other files saved to this folder are the 'decks_{seed}_{scoring_method}_probabilities.npy` files that include our statistics that we generated in the `processing.py` file. 
 
 ---
 
 `final_testing.ipynb`
 
-- This file contains the important tests ran to ensure that the code executes as planned. Run this file and change the `n` and `seed` parameters to create new `.npy` files that store new decks. If you want to augment existing decks, keep `seed` the same and just update `n`.
+- How to Run this file successfully:
+    - This file contains the important tests ran to ensure that the code executes as planned. Run this file and change the `n` and `seed` parameters   
+      to create new `.npy` files that store new decks. If you want to augment existing decks, keep `seed` the same and just update `n`.
 
 ---
