@@ -66,4 +66,3 @@ def store_data(n_decks: int,
     # Save the filename and decks if filename does not exist yet
     else:
         np.save(filename, decks)
-
