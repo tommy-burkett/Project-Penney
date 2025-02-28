@@ -43,7 +43,7 @@ Files included:
 
 `final_testing.ipynb`
 
-- How to Run this file successfully:
+- How to run this file successfully if augmenting new data, changing parameters:
     - This file contains the important tests ran to ensure that the code executes as planned.
     - First, run the imports to load our files from the `src/` folder.
     - Second, store the number of decks and seed.
@@ -56,7 +56,7 @@ Files included:
     - Finally, load the Dataframe into the `visualizations.generate_heatmap_from_df()` function.
           - Output: heatmap for the probability statistics 
 
-- Shortcut:
+- Shortcut (only running files currently stored in this repository, no new data):
     - If you want to run the file without augmenting any new data, and only use the data stored in this repository, follow these steps:
     - First, run the imports under `Step 1: Run the Imports`.
     - Second, run the `Check to ensure data was stored properly` and `Check the shape of our stored deck` under `Step 3: Store the data`.
