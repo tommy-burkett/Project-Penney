@@ -221,7 +221,7 @@ def statistics(filename: str,
     """
         Now that we have n number of simulations for Penney's Game
         let's look at the statistics for the possible combinations
-        of each Player 
+        of Player 2
 
         Arguments:
             - filename: filename in data/ folder with decks
@@ -277,6 +277,7 @@ def statistics(filename: str,
             }
 
 
+
     # Create filename for statistics 
     stats_filename = f'data/decks_{seed}_{scoring_method}_probabilities.npy'
 
@@ -285,5 +286,3 @@ def statistics(filename: str,
 
     # Alert the user that the statistics have been saved
     print(f"Statistics for seed {seed} have been saved to '{stats_filename}'")
-
-
