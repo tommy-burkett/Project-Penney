@@ -231,7 +231,7 @@ def statistics(filename: str,
             - scoring_method: can be 'tricks' or 'total_cards'
         
         Saves 
-            -.npy file with Player2 statistics and seed in filename
+            -.npy file with Player statistics and seed in filename
     """
 
     # Load decks from file
