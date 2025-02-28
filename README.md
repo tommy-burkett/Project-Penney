@@ -44,6 +44,16 @@ Files included:
 `final_testing.ipynb`
 
 - How to Run this file successfully:
-    - This file contains the important tests ran to ensure that the code executes as planned. Run this file and change the `n` and `seed` parameters to create new `.npy` files that store new decks. If you want to augment existing decks, keep `seed` the same and just update `n`.
+    - This file contains the important tests ran to ensure that the code executes as planned.
+    - First, run the imports to load our files from the `src/` folder.
+    - Second, store the number of decks and seed.
+    - Third, store our data using the `datagen.store_data()` function.
+          - Check to make sure data was stored properly
+    - Fourth, run the file through the `processing.statistics()` function.
+          - The statistics files should now be in the `data/` folder
+    - Fifth, load the `'data/decks_{seed}_{scoring_method}_probabilities.npy'` file into `visualizations.load_file()`.
+    - Sixth, convert the `'data/decks_{seed}_{scoring_method}_probabilities.npy'` into a DataFrame using `visualizations.npy_to_dataframe()`.
+    - Finally, load the Dataframe into the `visualizations.generate_heatmap_from_df()` function.
+          - Output: heatmap for the probability statistics 
 
 ---
