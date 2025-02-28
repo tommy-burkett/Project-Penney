@@ -71,7 +71,7 @@ def generate_heatmap_from_df(df, prob_column='prob_player2_win'):
     
         Arguments:
             -df: The DataFrame with player1_comb, player2_comb, and probabilities.
-            prob_column: The column containing the probabilities for Player 2's win.
+            -prob_column: The column containing the probabilities for Player 2's win.
     
     """
     
