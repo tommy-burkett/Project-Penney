@@ -52,7 +52,7 @@ Files included:
     - Fourth, run the file through the `processing.statistics()` function.
           - The statistics files should now be in the `data/` folder
     - Fifth, load the `'data/decks_{seed}_{scoring_method}_probabilities.npy'` file into `visualizations.load_file()`.
-    - Sixth, convert the `'data/decks_{seed}_{scoring_method}_probabilities.npy'` into a DataFrame using `visualizations.npy_to_dataframe()`.
+    - Sixth, convert the `'data/decks_{seed}_{scoring_method}_probabilities.npy'` into a DataFrame using `visualizations.npy_to_dataframe()`. 
     - Finally, load the Dataframe into the `visualizations.generate_heatmap_from_df()` function.
           - Output: heatmap for the probability statistics 
 
