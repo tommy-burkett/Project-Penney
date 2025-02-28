@@ -221,7 +221,7 @@ def statistics(filename: str,
     """
         Now that we have n number of simulations for Penney's Game
         let's look at the statistics for the possible combinations
-        of Player 2
+        of each Player 
 
         Arguments:
             - filename: filename in data/ folder with decks
