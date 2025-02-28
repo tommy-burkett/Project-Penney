@@ -37,14 +37,13 @@ Files included:
 
 `data/` 
 
-- This folder holds all of the `.npy` files stored from `datagen.py` in an organized manner. The files are named `'decks_{seed}.npy'` and they include the seed used to generate the decks within them. The other files saved to this folder are the 'decks_{seed}_{scoring_method}_probabilities.npy` files that include our statistics that we generated in the `processing.py` file. 
+- This folder holds all of the `.npy` files stored from `datagen.py` in an organized manner. The files are named `'decks_{seed}.npy'` and they include the seed used to generate the decks within them. The other files saved to this folder are the `'decks_{seed}_{scoring_method}_probabilities.npy'` files that include our statistics that we generated in the `processing.py` file. 
 
 ---
 
 `final_testing.ipynb`
 
 - How to Run this file successfully:
-    - This file contains the important tests ran to ensure that the code executes as planned. Run this file and change the `n` and `seed` parameters   
-      to create new `.npy` files that store new decks. If you want to augment existing decks, keep `seed` the same and just update `n`.
+    - This file contains the important tests ran to ensure that the code executes as planned. Run this file and change the `n` and `seed` parameters to create new `.npy` files that store new decks. If you want to augment existing decks, keep `seed` the same and just update `n`.
 
 ---
