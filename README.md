@@ -56,4 +56,11 @@ Files included:
     - Finally, load the Dataframe into the `visualizations.generate_heatmap_from_df()` function.
           - Output: heatmap for the probability statistics 
 
+- Shortcut:
+    - If you want to run the file without augmenting any new data, and only use the data stored in this repository, follow these steps:
+    - First, run the imports under `Step 1: Run the Imports`.
+    - Second, run the `Check to ensure data was stored properly` and `Check the shape of our stored deck` under `Step 3: Store the data`.
+    - Third, skip down to `Step 5: Load probability statistics into visualizations.py` and run every line under this step.
+    - Fourth, run every line under `Step 6: Convert .npy files to Pandas DataFrame`.
+    - Finally, run every line under `Final Step: Load DataFrames into heatmap`.
 ---
