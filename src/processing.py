@@ -103,17 +103,20 @@ def penney_game(player1: str,
 
             # Directly check for the combinations
             if ''.join(sequence[-len(player1):]) == player1:
+                # If Player 1 wins, add to their total tricks and cards
                 if scoring_method == 'tricks':
                     player1_tricks += 1
                 player1_total_cards += i + 1
                 break
             elif ''.join(sequence[-len(player2):]) == player2:
+                # If Player 2 wins, add to their total tricks and cards
                 if scoring_method == 'tricks':
                     player2_tricks += 1
                 player2_total_cards += i + 1
                 break
         else:
-            draw += 1  # if neither player wins, it's a draw
+            # If neither player wins, it's a draw
+            draw += 1  
 
     # Now we need Player statistics from the games, based on scoring_method
     if scoring_method == 'tricks':
@@ -238,8 +241,6 @@ def statistics(filename: str,
                 'prob_player1_win': prob_p1_win,
                 'prob_draw': prob_draw
             }
-
-
 
     # Create filename for statistics 
     stats_filename = f'data/decks_{seed}_{scoring_method}_probabilities.npy'
