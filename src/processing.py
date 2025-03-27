@@ -1,8 +1,6 @@
 # Imports
 import numpy as np
 import os
-import src.datagen
-import src.helpers
 from src.helpers import PATH_DATA
 
 # Constants
@@ -15,17 +13,8 @@ NUM_SIMULATIONS = 1000
 
 # List for all possible color combinations 
 combinations = [
-    'RRR', 'RRB', 'RBR', 'RBB', 'BRR', 'BRB', 'BBR', 'BBB',
-    'RRR', 'RRB', 'RBR', 'RBB', 'BRR', 'BRB', 'BBR', 'BBB',
-    'RRR', 'RRB', 'RBR', 'RBB', 'BRR', 'BRB', 'BBR', 'BBB',
-    'RRR', 'RRB', 'RBR', 'RBB', 'BRR', 'BRB', 'BBR', 'BBB',
-    'RRR', 'RRB', 'RBR', 'RBB', 'BRR', 'BRB', 'BBR', 'BBB',
-    'RRR', 'RRB', 'RBR', 'RBB', 'BRR', 'BRB', 'BBR', 'BBB',
-    'RRR', 'RRB', 'RBR', 'RBB', 'BRR', 'BRB', 'BBR', 'BBB',
-    'RRR', 'RRB', 'RBR', 'RBB', 'BRR', 'BRB', 'BBR', 'BBB'
-]
-
-
+                'RRR', 'RRB', 'RBR', 'RBB', 'BRR', 'BRB', 'BBR', 'BBB',
+               ]
 
 def load_file(filename: str):
 
@@ -49,22 +38,10 @@ def numbers_to_colors(deck):
         Convert a 2D deck of 0's and 1's to a 2D array 
         of 'R' and 'B' for Red and Black respectively.
     """
+    # Create a list to hold the colored decks
+    # https://www.w3schools.com/python/python_lists_comprehension.asp
+    colored_decks = ["".join(['R' if card == 0 else 'B' for card in deck]) for deck in deck]
 
-    # Create empty list
-    colored_decks = []
-    # Loop over every row in the file
-    for row in deck:
-        # Create empty string to hold R's and B's
-        colored_row = ""
-        # Loop over every card in a row
-        for card in row:
-            if card == 0:
-                colored_row += 'R'
-            else:
-                colored_row += 'B'
-        # Add rows back to empty colored_decks
-        colored_decks.append(colored_row)
-    
     return colored_decks
 
 
@@ -82,8 +59,8 @@ def combination_check(sequence, combination):
 def penney_game(player1: str,
                 player2: str,
                 decks,
-                num_cards: NUM_CARDS,
-                num_simulations: NUM_SIMULATIONS,
+                num_cards: int=NUM_CARDS,
+                num_simulations: int=NUM_SIMULATIONS,
                 scoring_method = 'tricks'
                ) -> dict:
 
@@ -120,37 +97,23 @@ def penney_game(player1: str,
         sequence = []
 
         # Loop over each individual 52 card deck
-        for i in range(num_cards):
-            # Add cards from deck to the sequence
-            card = deck[i]
+        for i, card in enumerate(deck):
+            # Add the card to the sequence
             sequence.append(card)
 
-            # Convert sequences to strings by using our numbers_to_colors function
-            sequence_to_string = numbers_to_colors(np.array([sequence]))[0]
-
-            # Check player1's combination
-            if combination_check(sequence_to_string, player1):
-                # If player1's combination shows up, add win to counts based on
-                # the scoring method
+            # Directly check for the combinations
+            if ''.join(sequence[-len(player1):]) == player1:
                 if scoring_method == 'tricks':
                     player1_tricks += 1
-                player1_total_cards += i+1
+                player1_total_cards += i + 1
                 break
-
-            # Check player 2's combination
-            if combination_check(sequence_to_string, player2):
-                # If player2's combination shows up, add win to counts based on
-                # the scoring method
+            elif ''.join(sequence[-len(player2):]) == player2:
                 if scoring_method == 'tricks':
                     player2_tricks += 1
-                player2_total_cards += i+1
+                player2_total_cards += i + 1
                 break
-
-        # Make sure there is a result for a draw, even though
-        # draws are unlikely
         else:
-            # if draw, add draw to counts
-            draw += 1
+            draw += 1  # if neither player wins, it's a draw
 
     # Now we need Player statistics from the games, based on scoring_method
     if scoring_method == 'tricks':
@@ -258,7 +221,7 @@ def statistics(filename: str,
     for player1_comb in combinations:
         for player2_comb in combinations:
             # Avoid repeating pairs and identical ones
-            if player1_comb >= player2_comb: 
+            if player1_comb == player2_comb: 
                 continue
 
             key = f'{player1_comb}_{player2_comb}'
