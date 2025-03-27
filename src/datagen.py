@@ -27,6 +27,18 @@ def get_decks(n_decks: int,
     
     return decks
 
+def get_total_decks(filename: str) -> int:
+    """
+        Retrieve the total number of decks from the saved .npy file.
+        Number will be later used in visualizations.py 
+    """
+    if os.path.exists(filename):
+        decks = np.load(filename)
+        return len(decks)  # Return the total number of decks
+    else:
+        print(f"File {filename} not found.")
+        return 0
+
 
 def store_data(n_decks: int,
                seed: int,
