@@ -98,8 +98,12 @@ def penney_game(player1: str,
 
         # Loop over each individual 52 card deck
         for i, card in enumerate(deck):
+            # Convert the card to a string
+            card_string = 'R' if card == 0 else 'B'
             # Add the card to the sequence
-            sequence.append(card)
+            sequence.append(card_string)
+
+
 
             # Directly check for the combinations
             if ''.join(sequence[-len(player1):]) == player1:
