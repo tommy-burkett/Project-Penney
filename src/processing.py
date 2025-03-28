@@ -1,4 +1,3 @@
-# Imports
 import glob
 import numpy as np
 import os
@@ -26,9 +25,10 @@ def load_file(filename: str):
     """
     
     # If the filename is a pattern (like 'decks_42'), find all matching .npy files
-    if '*' in filename:  # Check if the filename contains a wildcard (e.g., 'decks_42*')
+    if '*' in filename:  
         files = glob.glob(filename)
         
+        # Check to see if files were found
         if not files:
             print(f'No files matching the pattern "{filename}" found.')
             return None
@@ -39,11 +39,13 @@ def load_file(filename: str):
         # Iterate over each matching file and load it
         for file in files:
             print(f"Loading file: {file}")
-            data = np.load(file, allow_pickle=True)  # Load each .npy file
+            # Load each .npy file
+            data = np.load(file, allow_pickle=True)  
             combined_data.append(data)
         
         # Combine all the data into one numpy array (assuming data is in the correct shape)
-        combined_data = np.concatenate(combined_data, axis=0)  # Concatenate along rows (axis=0)
+        # Concatenate along rows (axis=0)
+        combined_data = np.concatenate(combined_data, axis=0)  
         
         return combined_data
 
@@ -130,19 +132,20 @@ def penney_game(player1: str,
             # Add the card to the sequence
             sequence.append(card_string)
 
-
-
-            # Directly check for the combinations
+            # Directly check for Player 1's combinations in the sequence
             if ''.join(sequence[-len(player1):]) == player1:
                 # If Player 1 wins, add to their total tricks and cards
                 if scoring_method == 'tricks':
                     player1_tricks += 1
+                # Add the total cards won by Player 1
                 player1_total_cards += i + 1
                 break
+            # Directly check for Player 2's combinations in the sequence
             elif ''.join(sequence[-len(player2):]) == player2:
                 # If Player 2 wins, add to their total tricks and cards
                 if scoring_method == 'tricks':
                     player2_tricks += 1
+                # Add the total cards won by Player 2
                 player2_total_cards += i + 1
                 break
         else:
@@ -189,7 +192,7 @@ def simulate_games_for_all_combinations(decks: np.ndarray,
     results_tricks = {}
     results_total_cards = {}
 
-    # Loop over player1 and player2's combinations
+    # Loop over Player1 and Player2's combinations
     for player1 in combinations:
         for player2 in combinations:
             # Make sure combinations are not the same
@@ -228,7 +231,7 @@ def statistics(filename: str,
             - scoring_method: can be 'tricks' or 'total_cards'
         
         Saves 
-            -.npy file with Player statistics and seed in filename
+            - .npy file with Player statistics and seed in filename
     """
 
     # Load decks from file
@@ -251,10 +254,10 @@ def statistics(filename: str,
     print(f"Generating probabilities for {num_simulations} simulations of Penney's Game using '{filename}'")
    
     
-    # Loop over player1 and player2's combinations
+    # Loop over Player1 and Player2's combinations
     for player1_comb in combinations:
         for player2_comb in combinations:
-            # Avoid repeating pairs and identical ones
+            # Avoid identical combinations
             if player1_comb == player2_comb: 
                 continue
 
