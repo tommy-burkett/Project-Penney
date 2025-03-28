@@ -1,4 +1,5 @@
 # Imports
+import glob
 import numpy as np
 import os
 from src.helpers import PATH_DATA
@@ -16,6 +17,7 @@ combinations = [
                 'RRR', 'RRB', 'RBR', 'RBB', 'BRR', 'BRB', 'BBR', 'BBB',
                ]
 
+
 def load_file(filename: str):
 
     """
@@ -23,13 +25,38 @@ def load_file(filename: str):
         the loaded deck if it exists
     """
     
-    # Check to see if file exists and return it
-    if os.path.exists(filename):
-        return np.load(filename)
+    # If the filename is a pattern (like 'decks_42'), find all matching .npy files
+    if '*' in filename:  # Check if the filename contains a wildcard (e.g., 'decks_42*')
+        files = glob.glob(filename)
+        
+        if not files:
+            print(f'No files matching the pattern "{filename}" found.')
+            return None
+        
+        # Initialize an empty list to store loaded arrays
+        combined_data = []
+        
+        # Iterate over each matching file and load it
+        for file in files:
+            print(f"Loading file: {file}")
+            data = np.load(file, allow_pickle=True)  # Load each .npy file
+            combined_data.append(data)
+        
+        # Combine all the data into one numpy array (assuming data is in the correct shape)
+        combined_data = np.concatenate(combined_data, axis=0)  # Concatenate along rows (axis=0)
+        
+        return combined_data
 
-    # If file does not exist, let the user know
+    # If it's a single file, just load that file
     else:
-        print(f'File "{filename}" does not exist. Try another file.')
+        # Check to see if file exists and return it
+        if os.path.exists(filename):
+            return np.load(filename)
+
+        # If file does not exist, let the user know
+        else:
+            print(f'File "{filename}" does not exist. Try another file.')
+            return None
 
 
 def numbers_to_colors(deck):
