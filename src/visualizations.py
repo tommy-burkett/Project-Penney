@@ -74,7 +74,6 @@ def npy_to_dataframe(filename) -> pd.DataFrame:
 
     return df
 
-
 def generate_heatmap_from_df(df, decks_filename: str, heatmap_filename: str):
     
     """
@@ -84,20 +83,21 @@ def generate_heatmap_from_df(df, decks_filename: str, heatmap_filename: str):
             -df: The DataFrame with player1_comb, player2_comb, and probabilities.
             -decks_filename (str): The filename of the .npy file containing the decks.
             -heatmap_filename (str): The filename to save the heatmap image as.
+    
     """
-    
+
     # Create pivot tables for Player 1 and Player 2 win probabilities
-    heatmap_data_player2 = df.pivot(index='player2_comb', 
-                                    columns='player1_comb', 
-                                    values='prob_player2_win')
-    heatmap_data_player1 = df.pivot(index='player1_comb', 
+    heatmap_data_player2 = df.pivot(index='player1_comb', 
                                     columns='player2_comb', 
+                                    values='prob_player2_win')
+    heatmap_data_player1 = df.pivot(index='player2_comb', 
+                                    columns='player1_comb', 
                                     values='prob_player1_win')
-    
+  
     # Annotations for the heatmap
     annot_data = df.pivot(index='player1_comb', 
                           columns='player2_comb', 
-                          values='prob_player1_win_(draw)'
+                          values='prob_player2_win_(draw)'
                           )
 
     # Create a combined matrix for Player 1 and Player 2 probabilities
@@ -111,15 +111,15 @@ def generate_heatmap_from_df(df, decks_filename: str, heatmap_filename: str):
     for i in range(num_rows):
         # Include the diagonal 
         for j in range(i+1):  
-            # Fill the lower triangle with Player 1's probabilities
-            combined_matrix[i, j] = heatmap_data_player1.iloc[i, j]
+            # Fill the lower triangle with Player 2's probabilities
+            combined_matrix[i, j] = heatmap_data_player2.iloc[i, j]
 
     # Loop through the upper triangle and fill with Player 1's probabilities
     for i in range(num_rows):
         # Start from above the diagonal 
         for j in range(i+1, num_cols):  
-            # Fill the upper triangle with Player 2's probabilities
-            combined_matrix[i, j] = heatmap_data_player2.iloc[i, j]
+            # Fill the upper triangle with Player 1's probabilities
+            combined_matrix[i, j] = heatmap_data_player1.iloc[i, j]
 
     # Create a DataFrame from the combined matrix
     combined_matrix_df = pd.DataFrame(combined_matrix, 
@@ -139,11 +139,12 @@ def generate_heatmap_from_df(df, decks_filename: str, heatmap_filename: str):
                 fmt='', 
                 cbar=False, 
                 annot_kws={'fontsize':12})
-    
+
     # Labels and title
     plt.title(f"My Chance of Win(Draw)\n({num_decks} Decks)", fontsize=16)
     plt.xlabel("My Choice")
     plt.ylabel("Opponent Choice")
+    plt.yticks(rotation=0)
     
     # Save the heatmap image in the 'figures' folder
     save_path = os.path.join('figures', heatmap_filename)
