@@ -46,7 +46,7 @@ Files included:
 - How to run this file successfully if augmenting new data, changing parameters:
     - This file contains the important tests ran to ensure that the code executes as planned.
     - First, run the imports to load our files from the `src/` folder.
-    - Second, store the number of decks and seed.
+    - Second, augment the number of decks and seed. In the current iteration, there are already 1,000,000 decks, so if you want to add 100 more decks to seed 42, change `num_decks = 1000000` to `num_decks = 100`. 
     - Third, store our data using the `datagen.store_data()` function.
           - Check to make sure data was stored properly
     - Fourth, run the file through the `processing.statistics()` function.
