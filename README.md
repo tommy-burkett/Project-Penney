@@ -41,7 +41,13 @@ Files included:
 
 ---
 
-`final_testing.ipynb`
+`figures/`
+
+- This folder contains the two heatmaps created from the `main.ipynb` file. One heatmap is for tricks and the other is for total_cards.
+
+---
+
+`main.ipynb`
 
 - How to run this file successfully if augmenting new data, changing parameters:
     - This file contains the important tests ran to ensure that the code executes as planned.
